@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Setup: install dependencies",
+      "type": "shell",
+      "command": "Rscript scripts/setup.R",
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Test",
+      "type": "shell",
+      "command": "Rscript tests/testthat.R",
+      "group": { "kind": "test", "isDefault": true },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run analysis",
+      "type": "shell",
+      "command": "Rscript scripts/run_analysis.R",
+      "group": { "kind": "build", "isDefault": true },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run analysis (offline snapshot)",
+      "type": "shell",
+      "command": "Rscript scripts/run_analysis.R --offline",
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    }
+  ]
+}

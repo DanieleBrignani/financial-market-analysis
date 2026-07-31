@@ -1,0 +1,56 @@
+default:
+  # ---- Sample -------------------------------------------------------------
+  start_date: "2004-09-30"
+  end_date:   "2024-09-30"
+
+  # ---- Universe -----------------------------------------------------------
+  assets:
+    AAPL: "Apple"
+    AMZN: "Amazon"
+    MMM:  "3M"
+    JPM:  "JPMorgan Chase"
+
+  # BENCHMARK. Must be a TOTAL-RETURN series, because the asset legs use
+  # dividend-adjusted closes. Yahoo's ^GSPC is the S&P 500 PRICE index: its
+  # "Adjusted" column equals Close and excludes dividends. Regressing total
+  # returns on price returns omits roughly 1.8%/yr of dividend yield from the
+  # right-hand side and inflates every alpha by about beta x that yield.
+  # SPY tracks the same index and its adjusted close reinvests distributions.
+  market:        "SPY"
+  market_source: "yahoo"
+  market_label:  "S&P 500 (SPY, total return)"
+
+  # RISK-FREE. FRED's DGS1MO is the 1-month Treasury constant-maturity yield,
+  # which is the maturity Fama-French use for the monthly RF leg, and is
+  # quoted as an investment yield rather than on a discount basis.
+  # Alternative: "^IRX" with source "yahoo" (13-week bill, discount basis --
+  # see the note in utils.R on the conversion this requires).
+  risk_free:        "DGS1MO"
+  risk_free_source: "FRED"
+  risk_free_label:  "1-month Treasury (FRED DGS1MO), lagged one month"
+
+  # ---- Sub-periods --------------------------------------------------------
+  subperiods:
+    gfc:
+      label: "Global Financial Crisis"
+      start: "2007-12-01"
+      end:   "2009-06-30"
+    covid:
+      label: "COVID-19 Shock"
+      start: "2020-02-01"
+      end:   "2021-06-30"
+
+  # ---- Estimation ---------------------------------------------------------
+  # NULL => Newey & West (1994) automatic bandwidth selection, which is what
+  # sandwich::NeweyWest() uses by default. (Andrews 1991 is a different
+  # procedure, implemented in sandwich::kernHAC.)
+  hac_lags: ~
+  rolling_window_months: 36
+  min_obs_subperiod: 12
+
+  # ---- I/O ----------------------------------------------------------------
+  cache_dir:     "data/raw"
+  processed_dir: "data/processed"
+  figure_dir:    "output/figures"
+  table_dir:     "output/tables"
+  offline: false

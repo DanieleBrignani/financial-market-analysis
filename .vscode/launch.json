@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "R-Debugger",
+      "name": "Run full analysis",
+      "request": "launch",
+      "debugMode": "file",
+      "workingDirectory": "${workspaceFolder}",
+      "file": "${workspaceFolder}/scripts/run_analysis.R"
+    },
+    {
+      "type": "R-Debugger",
+      "name": "Run unit tests",
+      "request": "launch",
+      "debugMode": "file",
+      "workingDirectory": "${workspaceFolder}",
+      "file": "${workspaceFolder}/tests/testthat.R"
+    }
+  ]
+}

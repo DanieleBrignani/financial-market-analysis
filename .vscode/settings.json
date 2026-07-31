@@ -1,0 +1,24 @@
+{
+  "r.rterm.windows": "C:\\Program Files\\R\\R-4.4.1\\bin\\x64\\R.exe",
+  "r.rterm.linux": "/usr/bin/R",
+  "r.rterm.mac": "/usr/local/bin/R",
+  "r.bracketedPaste": true,
+  "r.sessionWatcher": true,
+  "r.plot.useHttpgd": true,
+  "r.lsp.diagnostics": true,
+  "r.alwaysUseActiveTerminal": false,
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "editor.rulers": [80],
+  "[r]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.defaultFormatter": "REditorSupport.r"
+  },
+  "search.exclude": {
+    "**/data/raw": true,
+    "**/output": true,
+    "**/renv/library": true
+  }
+}
